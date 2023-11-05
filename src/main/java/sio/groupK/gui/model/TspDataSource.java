@@ -1,12 +1,8 @@
 package sio.groupK.gui.model;
 
-// att532 : 86729
-// rat575 : 6773
-// rl1889 : 316536
-// u574   : 36905
-// u1817  : 57201
-// vm1748 : 336556
-
+/**
+ * Data sources for the TSP used in the visualiser.
+ */
 public enum TspDataSource {
     ATT532("data/att532.dat"),
     RAT575("data/rat575.dat"),
@@ -21,6 +17,9 @@ public enum TspDataSource {
         this.path = path;
     }
 
+    /**
+     * @return Path to the data file
+     */
     public String path() {
         return path;
     }

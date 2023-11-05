@@ -5,7 +5,11 @@ import sio.groupK.gui.model.TspDataSource;
 import sio.groupK.gui.model.TspHeuristic;
 import sio.tsp.TspData;
 
+/**
+ * Main application and frame for the TSP visualiser.
+ */
 public class TspApplication extends JFrame {
+
     private JPanel contentPane;
     private JComboBox<TspDataSource> data;
     private JComboBox<TspHeuristic> heuristic;
@@ -18,6 +22,7 @@ public class TspApplication extends JFrame {
         super("TSP Visualiser");
         setContentPane(contentPane);
 
+        // register field models and event listeners to update the tour
         data.setModel(new DefaultComboBoxModel<>(TspDataSource.values()));
         heuristic.setModel(new DefaultComboBoxModel<>(TspHeuristic.values()));
 
@@ -28,9 +33,13 @@ public class TspApplication extends JFrame {
             computeTour();
         });
 
+        // run a first computation
         computeTour();
     }
 
+    /**
+     * Compute the tour and update the panel.
+     */
     private void computeTour() {
         try {
             var tourData = TspData.fromFile(((TspDataSource) data.getSelectedItem()).path());
@@ -45,7 +54,7 @@ public class TspApplication extends JFrame {
             tourPanel.setTour(tour);
             tourLengthLabel.setText("Tour length: %d".formatted(tour.length()));
         } catch (Exception e) {
-                    JOptionPane.showMessageDialog(
+            JOptionPane.showMessageDialog(
                     this,
                     e.getMessage(),
                     "An error occurred while loading data",
@@ -58,6 +67,9 @@ public class TspApplication extends JFrame {
         tourPanel = new TourPanel();
     }
 
+    /**
+     * Main entry point for the visualiser.
+     */
     public static void main(String[] args) {
         TspApplication app = new TspApplication();
         app.pack();

@@ -4,6 +4,9 @@ import sio.groupK.DoubleEndsNearestNeighbor;
 import sio.groupK.NearestNeighbor;
 import sio.tsp.TspConstructiveHeuristic;
 
+/**
+ * Heuristics for the TSP used in the visualiser.
+ */
 public enum TspHeuristic {
     NN {
         @Override
@@ -18,5 +21,8 @@ public enum TspHeuristic {
         }
     };
 
+    /**
+     * @return Instance of the current heuristic
+     */
     public abstract TspConstructiveHeuristic getHeuristicInstance();
 }
